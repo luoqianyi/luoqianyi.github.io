@@ -1,687 +1,597 @@
-# Spring
+# Hadoop大数据技术
 
-### 1.Spring简介
+### 1.大数据时代
 
-- spring:春天，给软件行业带来了春天
-- 理念：使得现有技术更加实用
-- 2002, 首次推出了Spring框架的雏形: interface21框架!
-- Spring框架即以interface21框架为基础，经过重新设计 ，并不断丰富其内涵,于2004年3月24日发布了1.0正式版。
-- Rod Johnson , Spring Framework创始人, 著名作者。很难想象Rod Johnson的学历， 真的让好多人大吃一惊，他是悉尼大学的博士,然而他的专业不是计算机，而是音乐学。
-- spring理念: 使现有的技术更加容易使用，本身是一 个大杂烩，整合了现有的技术框架!
-- SSH : Struct2 + Spring + Hibernate!
-- SSM : SpringMvc + Spring + Mybatis!
-- 官网: https://spring.io/projects/spring-framewor
-- 官方下载地址: http://repo.spring.io/release/org/springframework/spring
-- GitHub: https://github.com/spring-projects/spring-framework
+###### 三次信息化浪潮的标志？
 
-```xml
-<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
-<dependency>
-    <groupId>org.springframework</groupId>
-    <artifactId>spring-webmvc</artifactId>
-    <version>5.3.3</version>
-</dependency>
-<dependency>
-    <groupId>org.springframework</groupId>
-    <artifactId>spring-jdbc</artifactId>
-    <version>5.3.3</version>
-</dependency>
-```
+第一次：PC
 
-#### 优点
+第二次：互联网
 
-1. Spring是一个开源的免费的框架（容器）！
-2. Spring是一个轻量级、非入侵式的框架！
-3. 控制反转（IOC），面向切面编程（AOP）
-4. 支持事务的处理，对框架整合的支持！
+第三次：大数据、云计算、物联网
 
-#### 缺点
+### 2.大数据特点
 
-1. 配置十分繁琐，人称“配置地狱”！
+4V：数据量大、数据类型多、处理速度快、价值密度低
 
-#### **总结**
+### 3.大数据对思维方式的重要影响？
 
-**Spring就是一个轻量级的控制反转（IOC）和面向切面编程(AOP)的框架！**
+1. 全样而非抽样
 
-#### 组成
+   在过去,数据存储和处理能力有限，所以在科学分析中一般采用抽样的方法，而现在，有了大数据技术的支持，科学分析可以直接针对全样数据进行分析而不是抽样数据；
 
-![image-20210203150357582](https://cdn.jsdelivr.net/gh/luoqianyi/staticForimages@7be4b1577cf05dcb7d09e96e8b9141b9120996b9/2021/03/03/32801aac3fd4e89571d1615acf9339c3.png)
+2. 效率而非精确
 
-#### 拓展
+   在科学分析中如果采用抽样分析，则分析需要做到精确，否则分析后的结果误差就会被放大，为了保证误差在可控范围内，就必须确保分析结果的精确性，因此传统的分析往往更注重算法的精确性，算法的效率则在其次；而大数据时代中的科学分析采用全样分析，就不存在抽样分析过程误差被放大的情况，因此数据分析的效率就成为了关注的核心；
 
-现代化的Java开发：
+3. 相关而非因果
 
-![image-20210203150510001](https://cdn.jsdelivr.net/gh/luoqianyi/staticForimages@bb798397dbc3c2678330381ebd060f532c6f8d9d/2021/03/03/58a02f0675213af70f59cfc7fdaa1bb4.png)
+   过去，数据分析的目的，一是为了解释事物背后的发展机理，二是用来预测未来可能发生的事件，通过观察数据了解事件发生的因果。而大数据时代，因果关系不再那么重要了，因为数据量庞大，人们更多是关注事物的相关性，比如淘宝购物中推送与你购买了同商品的人又买了其他什么商品的消息，而不是告诉你为什么其他人还购买了某件商品。
 
-- Spring Boot
-  1. 一个快速开发的脚手架
-  2. 基于SpringBoot可以快速开发单个微服务
-  3. 约定大于配置
-- Spring Cloud
-  1. SpringCloud是基于SpringBoot实现的
 
-**学习Spring Boot的前提，需要完全掌握Spring及Spring MVC!承上启下的作用！**
 
-### 2.IoC（控制反转！！！）
+### 4.大数据关键技术
 
-#### 1.IoC理论推导
+###### 数据采集
 
-- UserDao接口
-- UserDaoImpl实现类
-- UserService业务接口
-- UserServiceImpl业务实现类
+利用etl工具将分步的、异构数据源中的数据如关系数据、平面数据文件等，抽取到临时中间层后进行清洗、转换、集成，最后加载导数据仓库或数据集市中，成为联机分析处理、数据挖掘的基础；或者也可以把实时采集的数据作为流计算系统的输入，进行实时处理分析。
 
-在我们之前的业务中，用户的需求可能会影响我们原来的代码，我们需要根据用户的需求去修改原代码！如果程序代码量十分大，修改一次的成本十分昂贵！
+###### 数据存储和管理
 
-我们使用一个set接口实现：
+大数据存储与管理要用存储器把采集到的数据存储起来，建立相应的数据库，并进行管理和调用。重点解决复杂结构化、半结构化和非结构化大数据管理与处理技术。主要解决大数据的可存储、可表示、可处理、可靠性及有效传输等几个关键问题。开发可靠的分布式文件系统（DFS）、能效优化的存储、计算融入存储、大数据的去冗余及高效低成本的大数据存储技术；突破分布式非关系型大数据管理与处理技术，异构数据的数据融合技术，数据组织技术，研究大数据建模技术；突破大数据索引技术；突破大数据移动、备份、复制等技术；开发大数据可视化技术。
 
-```java
-private UserDao userDao;
+开发新型数据库技术，数据库分为关系型数据库、非关系型数据库以及数据库缓存系统。其中，非关系型数据库主要指的是NoSQL数据库，分为：键值数据库、列存数据库、图存数据库以及文档数据库等类型。关系型数据库包含了传统关系数据库系统以及NewSQL数据库。
 
-//利用set动态实现值的注入
-public void setUserDao(UserDao userDao){
-    this.userDao = userDao;
-}
-public void getUser() {
-    userDao.getUser();
-}
-```
+开发大数据安全技术。改进数据销毁、透明加解密、分布式访问控制、数据审计等技术；突破隐私保护和推理控制、数据真伪识别和取证、数据持有完整性验证等技术。
 
-- 之前，程序是主动创建对象！控制权在程序手上！
-- 使用了Set注入后，程序不再具有主动性，而是变成了被动的接受对象！
+###### 数据处理与分析
 
-这种思想，从本质上解决了问题，我们程序员不用再去管理对象的创建了。系统的耦合性大大降低，可以更加专注在业务的实现上。
+利用分布式并行编程模型和计算框架，结合机器学习和数据挖掘算法实现对海量数据的处理和分析;对分析结果进行可视化呈现，帮助人们更好地理解数据、分析数据。
 
-#### 2.IoC本质
+###### 数据隐私和安全
 
-IoC(Inversion of Control),是一种种设计思想, DI(Dependency Injection依赖注入)是实现IoC的一种方法，也有人认为DI只是loC的另一种说法。没有loC的程序中,我们使用面向对象编程,对象的创建与对象间的依赖关系完全硬编码在程序
-中，对象的创建由程序自己控制，控制反转后将对象的创建转移给第三方,个人认为所谓控制反转就是:获得依赖
-对象的方式反转了。
+在从大数据中挖掘潜在的巨大商业价值和学术价值的同时，构建隐私数据保护体系和数据安全体系，有效保护个人隐私和数据安全。
 
-采用XML方式配置Bean的时候，Bean的定义信息是和实现分离的，而采用注解的方式可以把两者融为一体，Bean的定义信息直接以注解的形式定义在实现类中，从而达到0配置的目的。
-
-控制反转是一种通过描述（XML或注解）并通过第三方去生产或获取特定对象的方式。在Spring中实现控制反转的是IoC容器，其实现方式是依赖注入（DI）
-
-### 3.编写第一个Spring程序HelloSpring!
-
-#### 1.首先定义一个实体类
-
-```java
-package com.luo.pojo;
-
-public class Hello {
-    private String str;
-
-    public void setStr(String str) {
-        this.str = str;
-    }
-
-    public String getStr() {
-        return str;
-    }
-
-    @Override
-    public String toString() {
-        return "Hello{" +
-                "str='" + str + '\'' +
-                '}';
-    }
-}
-```
+### 5.大数据计算模式
 
-#### 2.然后配置Spring
+![image](https://gitee.com/luoqianyi/static-image/raw/master/%E5%9B%BE%E5%BA%8A/20210907160809.png)
 
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-        https://www.springframework.org/schema/beans/spring-beans.xsd">
-<!--    使用Spring来创建对象，在Spring这些都称为Bean-->
-    <bean id="hello" class="com.luo.pojo.Hello">
-        <property name="str" value="Spring"/>
-    </bean>
+- 批处理计算
 
-</beans>
-```
+  主要解决针对大规模数据的批量处理，是数据分析工作中非常常见数据处理技术。
 
-#### 3.编写测试类
+  MapReduce**并行执行大规模数据处理任务**，1TB以上的数据量。将并行计算过程抽象为两个函数Map和Reduce。
+  Spark**启动内存分布数据集，可以进行交互式查询、优化迭代工作负载**。
 
-```java
-import com.luo.pojo.Hello;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+- 流计算
 
-public class MyTest {
-    public static void main(String[] args) {
-        //获取Spring的上下文对象
-        ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-        //我们的对象现在都在Spring中的管理了，我们要使用，直接去里面取用就可以了
-        Hello hello = (Hello) context.getBean("hello");
-        System.out.println(hello.toString());
-    }
-}
-```
+  **流数据**是大数据分析中的重要数据类型,流数据是指**在时间分布和数据上无限的一系列动态数据集合**,数据的价值随着时间的流逝而降低。因此必须采用实时计算的方式给出秒级响应。
 
-#### 4.总结一下
+  第一类:商业级的流计算平台，IBM StreamBase
+  第二类:开源流计算框架，Twitter Storm，Yahoo S4，Spark Streaming
+  第三类:支持自身业务开发的流计算框架，Facebook Puma，百度Dstream，淘宝银河流数据处理平台
 
-***控制:****谁来控制对象的创建,传统应用程序的对象是由程序本身控制创建的,使用Spring后,对象是由Spring来创建的。*
+- 图计算
 
-***反转:***程序本身不创建对象,而变成被动的接收对象。
+  许多数据是以大规模图和网络的形式呈现，MapReduce**不适用来解决大规模图计算问题**。
+  Pregel是一种基于BSP模型实现的并行图形处理系统,主要用于图遍历、最短路径等。
+  代表性的有Facebook针对pregel的开源实现Giraph，Spark下的GraphX,图数据处理系统PowerGraph。
 
-***依赖注入:***就是利用set方法来进行注入的。
+- 查询分析计算
 
-IOC是一-种编程思想 ,由主动的编程变成被动的接收，可以通过new ClassPathXmlApplicationContext去浏览一下底层源码 。OK ,到了现在,我们彻底不用再程序中去改动了,要实现不同的操作,只需要在xml配置文件中进行修改。
+  Google公司开发的Dremel是一种**可扩展的、交互式的实时查询系统**，几秒内完成万亿张表的聚合查询，2-3s完成PB级别数据查询。
+  Cloudera公司参考Dremel系统开发了实时查询引|擎Impala,能够查询存储在HDFS和Hbase中PB级大数据。
 
-**所谓的IoC,一句话搞定 :对象由Spring 来创建，管理,装配 !** 
+![image-20210914153905172](https://gitee.com/luoqianyi/static-image/raw/master/%E5%9B%BE%E5%BA%8A/20210914153908.png)
 
-### 4.IoC创建对象的方式
+### 6.大数据产业
 
-```xml
-<!--        默认无参-->
-         <bean id="user" class="com.luo.pojo.User">
-            <property name="name" value="小明"/>
-        </bean>
-<!--    有参构造，下标赋值-->
-        <bean id="user1" class="com.luo.pojo.User">
-            <constructor-arg value="小红" index="0"/>
-        </bean>
-<!--    有参构造，类型赋值,不建议使用-->
-        <bean id="user2" class="com.luo.pojo.User">
-            <constructor-arg type="java.lang.String" value="小亮"/>
-        </bean>
-<!--    直接通过参数赋值-->
-    <bean id="user3" class="com.luo.pojo.User">
-        <constructor-arg name="name" value="小小"/>
-    </bean>
-```
+大数据产业是指一切与支撑大数据组织管理和价值发现相关的企业经济活动的集合。
 
-**总结：在配置文件加载的时候，容器中管理的对象就已经初始化了！**
+1. IT基础设施层
+2. 数据源层
+3. 数据管理层
+4. 数据分析层
+5. 数据平台层
+6. 数据应用层
 
-### 5.Spring配置
 
-#### 1.别名
 
-```xml
-<!--    别名-->
-    <alias name="user" alias="0"/>
-    <alias name="user1" alias="1"/>
-```
+### 7.大数据与云计算、物联网的关系
 
-#### 2.Bean的配置
+相辅相成，既有联系又有区别。
 
-这里也可以为其取别名，而且更加灵活
+#### 1.云计算
 
-```xml
-<bean id="user3" class="com.luo.pojo.User" name="q w e r t y">
-    <constructor-arg name="name" value="小小"/>
-</bean>
-```
+###### 什么是云计算？
 
-#### 3.import
+通过整合、管理、调配分布在网络各处的计算资源,通过互联网以统一界面、同时向大量的用户提供服务。
 
-创建一个applicationContext.xml，一般用来**团队协作开发**，导入配置文件：
+云计算实现了通过网络提供可伸缩的、廉价的分布式计算能力，用户只需要在具备网络接入条件的地方，就可以随时随地获得所需的各种I资源。
 
-```xml
-<?xml version="1.0" encoding="UTF-8" ?><beans xmlns="http://www.springframework.org/schema/beans"       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"       xsi:schemaLocation="http://www.springframework.org/schema/beans        https://www.springframework.org/schema/beans/spring-beans.xsd">    <import resource="beans.xml"/></beans>
-```
+![image-20210914163335502](https://gitee.com/luoqianyi/static-image/raw/master/%E5%9B%BE%E5%BA%8A/20210914163335.png)
 
-定义上下文的时候直接调用这个配置，同样可以实现
+![image-20210914161251567](https://gitee.com/luoqianyi/static-image/raw/master/%E5%9B%BE%E5%BA%8A/20210914161251.png)
 
-### 6.依赖注入
+###### 云计算分类
 
-- 构造器注入
-- set方式注入（重点）
-- 拓展方式注入：cp
+按照使用范围：
 
-```xml
-<bean id="s" class="com.luo.pojo.Address">        <property name="address" value="HeNan"/></bean> <bean name="student" class="com.luo.pojo.Student"><!--        第一种，普通注入,value-->        <property name="name" value="test"/><!--        第二种，Bean注入,ref-->        <property name="address" ref="s"/><!--        数组注入-->        <property name="books">           <array>               <value>三国演义</value>               <value>水浒传</value>               <value>红楼梦</value>               <value>西游记</value>           </array>        </property><!--        List注入-->        <property name="hobbys">                <list>                    <value>听歌</value>                    <value>打游戏</value>                    <value>碎觉</value>                </list>        </property><!--        Map注入-->        <property name="card">            <map>                <entry key="身份证" value="11112222"/>                <entry key="银行卡" value="2131"/>                <entry key="学号" value="2132131"/>            </map>        </property><!--        Set注入-->        <property name="games">            <set>                <value>LOL</value>                <value>COC</value>                <value>BOB</value>            </set>        </property><!--        null-->        <property name="wife">            <null/>        </property><!--        Properties-->        <property name="info">            <props>                <prop key="学号">20191574308</prop>                <prop key="性别">男</prop>                <prop key="姓名">小落</prop>            </props>        </property>    </bean>
-```
+**共有云，私有云，混合云**
 
-```xml
-<?xml version="1.0" encoding="UTF-8"?><!--导入p命名空间约束与c命名空间约束--><beans xmlns="http://www.springframework.org/schema/beans"       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"       xmlns:p="http://www.springframework.org/schema/p"       xmlns:c="http://www.springframework.org/schema/c"       xsi:schemaLocation="http://www.springframework.org/schema/beans        https://www.springframework.org/schema/beans/spring-beans.xsd">    <!--    p命名空间注入，可以直接注入属性的值：property-->    <bean id="user" class="com.luo.pojo.User" p:age="18" p:name="小明" />    <bean id="user2" class="com.luo.pojo.User" c:age="18" c:name="熊熊"/></beans>
-```
+遵循的原则：
 
-- Bean的作用域
+- Iaas (**基础设施即服务**) : 消费者通过Internet可得到完善的计算机基础设施,企事业单位不用建设机房,购买服务器等设备。
+- Paas (**平台即服务**) :用户可以通过云计算服务商提供的平台开发或者运行软件。
+- Saas (**软件即服务**) : 通过Internet提供软件服务,用户无需购买软件。
 
-  ![image-20210205094549722](https://cdn.jsdelivr.net/gh/luoqianyi/staticForimages@18cc2048d0e4dcf920de015f6a38a0c4f4a458a8/2021/03/03/4617bd802fca0b2876aea208746026d5.png)
+###### 云计算关键技术对比
 
-  1. 单例模式（Spring默认机制）
+![image-20210914160101458](https://gitee.com/luoqianyi/static-image/raw/master/%E5%9B%BE%E5%BA%8A/20210914160101.png)
 
-  ![image-20210205094521093](https://cdn.jsdelivr.net/gh/luoqianyi/staticForimages@3812c334c39e102f23ddec706b3d6c77a3abb90f/2021/03/03/c1fdccd5428dd5d8042c890186d72735.png)
+**云计算的关键技术包括 :虚拟化、 分布式存储、 分布式计算、多租户。**
 
-  2. 原型模式：**每次从容器中get的时候，都会产生一个新对象**！
+- 虚拟化
 
-  ```xml
-  <bean id="user2" class="com.luo.pojo.User" c:age="18" c:name="熊熊" scope="prototype"/>
-  ```
+  虚拟化技术是云计算基础架构的基石。是讲一台计算机虚拟为多台逻辑计算机，每个逻辑计算机可以在相互独立的空间运行。
+  虚拟化的资源可以是硬件，也可以是软件。硬件可以让cpu、内存、磁盘、I/O等变成动态管理资源池。软件上, Vmware、Virtualbox、 Hyper-V都是典型的虚拟化技术。
 
-  3. 其余的request、session、application，这些只能在web开发中使用！
+- 分布式存储
 
-### 7.Bean的自动装配
+  GFS——HDFS
 
-- 自动装配是Spring满足Bean依赖的一种方式！
-- Spring会在上下文中自动寻找，并自动给Bean装配属性！
+  BigTable——HBase
 
-在Spring中有三种装配的方式
+- 分布式计算
 
-1. 在xml中显式的配置
-2. 在Java中显式的配置
-3. **隐式的自动配置bean[重要]**
+  MapReduce
 
- 
+- 多租户
 
-```xml
-    <bean id="cat" class="com.luo.pojo.Cat"/>    <bean id="dog" class="com.luo.pojo.Dog"/><!--    会自动在容器上下文中查找，和自己对象set方法后面的值对应的bean的id！-->    <bean id="people" class="com.luo.pojo.People" p:name="小落" autowire="byName"/><!--    会自动在容器上下文中查找，和自己对象属性类型相同的bean -->    <bean id="people" class="com.luo.pojo.People" p:name="小落" autowire="byType"/>
-```
+  目的在于使大量用户能够共享软硬件资源，提高资源利用率。
 
-4. 使用注解实现自动装配 
+#### 2.物联网
 
-   jdk1.5支持的注解，Spring2.5就支持注解了！
-   基于注释的配置的引入提出了这样的方法是否“更好”的问题，而不是XML。
+###### 什么是物联网？
 
-   要使用注解须知道：
+物联网是**物物相连的互联网**,是互联网的延伸,它利用局部网络或互联网等通信技术把传感器、控制器、机器、人员和物等通过新的方式连在一起。
+物联网分为4层:
 
-   1. 导入约束,context约束
-   2. 配置注解的支持
+**感知层、网络层、处理层和应用层。**
 
-   ```xml
-   <?xm1 version="1. 0" encoding="UTF-8"?><beans xmlns="http://www.springframework.org/ schema/beans"xmlns:xsi ="http://www.w3.org/2001/XMLSchema-instance"xmlns:context="http://www.springframework.org/schema/context"xsi:schemalocation="http://www.springframework.org/schema/beanshttps://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/contexthttps://www.springframework.org/schema/context/spring-context.xsd"><context:annotation-config/></beans>
-   ```
+###### 物联网关键技术
 
-   @Autowired
+- 识别和感知技术(二维码、FRID、 传感器)、网络与通信技术、数据挖掘和融合技术。
 
-   直接在属性上使用即可！也可以在set方式上使用！
+- **网络与通信技术**，物联网中的网络和通信技术包括短距离无线通信技术和远程通信技术。
 
-   使用Autowired，我们可以不用编写Set方法了，前提是自己自动装配的属性在IoC（Spring）容器中存在，且符合名字byName!
+- 数据挖掘和融合技术，是物联网处理层需要解决的关键问题。
 
-   科普一下：
 
-   - @Nullable 说明这个字段可以为null
 
-     ```java
-       public People(@Nullable Dog dog) {        this.dog = dog;    }
-     ```
+#### 3.大数据、物联网、云计算关系图
 
-   - 两种装配模式：
+![image-20210914163626593](https://gitee.com/luoqianyi/static-image/raw/master/%E5%9B%BE%E5%BA%8A/20210914163626.png)
 
-     ```java
-     //   自动装配的，如果显示的定义了Autowried属性为false,说明这个对象可以为空，否则不允许为空    @Autowired(required = false)    private Cat cat;    @Autowired    private Dog dog;
-     ```
+### 8.Hadoop概述
 
-    如果@Autowired自动装配的环境比较复杂，自动装配无法通过一个注解【@Autowired】完成的时候，我们可以使用@Qualifier(value="xxx")去配合使用，指定唯一的bean使用。
+#### 1.什么是Hadoop?
 
-   ![image-20210206110559606](https://cdn.jsdelivr.net/gh/luoqianyi/staticForimages@cf11908ba603cf0e0666d87a6d1875ec5c44f4bb/2021/03/03/473ebb27d0c32296c725cd1a4843e061.png)
+- Hadoop是Apache软件基金会旗下的一一**开源分布式计算平台**,为用户提供了系统**底层细节透明**的分布式基础架构。
+- Hadoop是基于<u>Java</u>语言开发的,具有很好的**跨平台特性**,并且可以部署在廉价的计算机**集群**中。
+- Hadoop的核心是**分布式文件系统HDFS** ( Hadoop Distributed File System )和**分布式并行计算MapReduce**。
 
-   **@Resource注解**
+- 大数据标准开源软件，在分布式环境下提供了海量数据的处理能力
 
-   ```java
-   public class People{    @Resource(name = "cat2")    private Cat cat;        @Resource    private Dog dog;}
-   ```
+#### 2.它的故事
 
-   两者区别：
+​		Hadoop最初是由Apache Lucene项目的创始人Doug Cutting开发的文本搜索库。Hadoop源自始于2002年的Apache Nutch项目一个开源的网络搜索引擎并且也是Lucene项目的一部分。在2004年，Nutch项目也模仿GFS开发了自己的分布式文件系统<u>NDFS</u>( Nutch Distributed File System ) ,也就是<u>HDFS的前身</u>。同一年,谷歌公司又发表了另一篇具有深远影响的论文,阐述了MapReduce分布式编程思想。2005年，Nutch开源实现了谷歌的MapReduce到了2006年2月, Nutch中的NDFS和MapReduce开始独立出来,成为Lucene项目的一个子项目， 称为Hadoop ,同时，Doug Cutting加盟雅虎。2008年1月，Hadoop正式成为Apache顶级项目, Hadoop也逐渐开始被雅虎之外的其他公司使用。2008年4月，Hadoop打破世界纪录,**成为最快排序1TB数据的系统**。**它采用一个由910个节点构成的集群进行运算,排序时间只用了209秒！**在2009年5月，Hadoop更是把**1TB数据排序时间缩短到62秒**。Hadoop从此名声大震,迅速发展成为大数据时代最具影响力的开源分布式开发平台，并**成为事实上的大数据处理标准**。
 
-   - 都是用来装配的，都可以放在属性字段上
-   - @Autowired通过byName的实现【常用】
-   - @Resource默认通过byName的方式实现，如果找不到名字，则通过byType实现！如果两个都找不到就报错！【常用】
-   - 执行顺序不同：@ Autowired通过byType的方式实现。@ Resource默认通过byname的方式实现。
 
-### 8.使用注解开发
 
-在Spring4之后，要使用注解开发，必须要保证aop的导入了
+#### 3.特性
 
-使用注解需要导入context约束，增加注解的支持 ！！！
+- 高可靠
+- 高效
+- 高扩展
+- 高容错
+- 成本低
+- 运行在linux上
+- 支持多种编程语言
+- ......
 
-```xml
-<?xml version="1.0" encoding="UTF-8"?><beans xmlns="http://www.springframework.org/schema/beans"       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"       xmlns:context="http://www.springframework.org/schema/context"       xsi:schemaLocation="http://www.springframework.org/schema/beans        https://www.springframework.org/schema/beans/spring-beans.xsd        http://www.springframework.org/schema/context        https://www.springframework.org/schema/context/spring-context.xsd">    <context:annotation-config/><!--    指定扫描访问的包-->    <context:component-scan base-package="com.luo"/><!--    <bean id="user" class="com.luo.pojo.User"/>--></beans>
-```
+#### 4.版本
 
-##### 1.属性的注入
+![image-20210923103649772](https://gitee.com/luoqianyi/static-image/raw/master/%E5%9B%BE%E5%BA%8A/20210923103651.png)
 
-```java
-//下面这样搞就直接等价于<bean id="user" class="com.luo.pojo.User"/>@Component@Scope("prototype")public class User {    @Value("小明")    public String name;    @Value("kk")    public void setName(String name) {        this.name = name;    }
-```
+**现在学习以第2版为主。**
 
-##### 2.衍生的注解
+商业化版本
 
-@Component有几个衍生注解，我们在web开发中，会按照MVC三层架构分层！
+- Cloudera ( CDH : Cloudera Distribution Hadoop )
+- Hortonworks
+- MapR
 
-- dao【@Repository】
+选择上需要考虑的因素：
 
-- service【@Service】
+- 是否开源
+- 是否有稳定版
+- 是否经实践检验
+- 是否有强大的社区支持
+- ......
 
-- controller【@Controller】
-- ​	这四个注解功能都是一样的，都是代表将某个类注解到Spring中华，装配Bean
+### 9.Hadoop生态
 
-##### 3.自动装配置
+![image-20210923105924146](https://gitee.com/luoqianyi/static-image/raw/master/%E5%9B%BE%E5%BA%8A/20210923105932.png)
 
-```java
-@Autowired:自动装配通过类型。名字如果@Autowired不能唯一自动装配上属性，则需要通过@Qualifier(value="xxx")@Nu11able:字段标记了这个注解，说明这个字段可以为nu11;@Resource:自动装配通过名字。类型。
-```
+- HDFS 分布式文件系统,处理超大规模、流式处理、部署廉价。
+- HBase高可靠、高性能、可伸缩、实时读写、分布式列式数据库。
+- MapReduce并行处理框架
+- Hive数据仓库工具,对数据集进行整理、特殊查询和分析存储。
+- Pig是一种数据流语言和运行环境,适合使用Hadoop平台查询半结构化数据集。
+- Mahout Apache软件基金下的一个开源项目,提供一些可扩展的机器学习领域经典算法的实现。
+- Zookeeper针对google Chubby的开源实现，是高效和可靠的协同工作系统。
+- Flume高可用、高可靠、分布式的海量日志采集、聚合和传输的系统。
+- Sqoop主要用来在Hadoop和关系数据库之间交换数据。
+- Ambari是基于Web的工具,支持Apache Hadoop集群的安装、部署配置和管理。
 
-##### 4.作用域
+### 10.Hadoop安装与使用
 
-```
-@Scope("prototype")
-```
+#### 1.准备工作
 
-##### 5.小结
+1. 安装平台Linux平台
 
-xml与注解:
+2. 创建Hadoop用户(*)
 
-- xml更加万能，适用于任何场合!维护简单方便
+3. Java的安装
 
-- 注解不是自己类使用不了，维护相对复杂!
+4. SSH免密登录
 
-xml与注解最佳实践:
+   为什么？
 
-- xml用来管理bean;
+   **Hadoop名称节点(NameNode)需要启动集群中所有机器的Hadoop守护进程，这个过程需要通过SSH登录来实现。Hadoop并没有提供SSH输入密码登录的形式，因此，为了能够顺利登录每台机器，需要将所有机器配置为名称节点可以无密码登录它们。**
 
-- 注解只负责完成属性的注入
+   > 提示：提升为超级用户
+   >
+   > sudo usermod -G sudo zhangyu
 
-- 我们在使用的过程中，只需要注意一个问题：必须让注解生效，就需要开启注解的支持！
+5. 安装Hadoop
 
-### 9.使用Java的方式配置Spring
+#### 2.Hadoop安装方式
 
-  JavaConfig是Spring的一个子项目，在Spring4之后，它成为了一个核心功能！
+- 单机模式:  Hadoop默认模式为非分布式模式(本地模式)， 无需进行其他配置即可运行。**非分布式即单Java进程**,方便进行调试
+- 伪分布式模式:  Hadoop可以在单节点上以伪分布式的方式运行，Hadoop进程以分离的Java进程来运行，**节点既作为NameNode也**
+  **作为DataNode ,同时,读取的是HDFS中的文件**
+- 分布式模式: 使用**多个节点构成集群**环境来运行Hadoop
 
-实体类
+###### 1.单机和伪分布式安装方式
 
-```java
-package com.luo.pojo;import org.springframework.beans.factory.annotation.Value;import org.springframework.stereotype.Component;@Componentpublic class User {    private String name;    public String getName() {        return name;    }    @Value("小小小")    public void setName(String name) {        this.name = name;    }    @Override    public String toString() {        return "User{" +                "name='" + name + '\'' +                '}';    }}
-```
+1. 如果系统是Linux，请参照下面给出的教程进行安装：
 
-配置文件
+   推荐这个：[**Hadoop安装配置简略教程_厦大数据库实验室博客 (xmu.edu.cn)**](http://dblab.xmu.edu.cn/blog/install-hadoop-simplify/)
 
-```java
-@Configuration //这个会被Spring容器托管，注册到容器中，因为他本来就是一个@Component组件//它就是相当于beans.xml@ComponentScan("com.luo.pojo")@Import(LuoConfig2.class)public class LuoConfig {    //注册一个bean,这个方法的名字就相当于bean的id属性，方法的返回值    @Bean    public User getUser(){        return new User();    }}
-```
+   在Ubuntu系统上安装Hadoop请参考：
+   （1）《大数据技术原理与应用（第2版）》教材请参考： [Hadoop安装教程-单机-伪分布式配置-Hadoop2.6.0(2.7.1)-Ubuntu14.04(16.04)](http://dblab.xmu.edu.cn/blog/install-hadoop/)
+   （2）《大数据技术原理与应用（第3版）》教材（已经在2020年12月出版，[教材官网](http://dblab.xmu.edu.cn/post/bigdata3)）请参考：[Hadoop安装教程_单机/伪分布式配置_Hadoop3.1.3/Ubuntu18.04(16.04)](http://dblab.xmu.edu.cn/blog/2441-2/)
 
-测试类
+   在CentOS系统上安装Hadoop请参考：
+   [Hadoop安装教程-伪分布式配置-CentOS6.4-Hadoop2.6.0](http://dblab.xmu.edu.cn/blog/install-hadoop-in-centos/)
 
-```java
-public static void main(String[] args) {    //如果完全使用了配置类方式去做，我们就只能通过AnnotationConfig上下文来获取容器，通过配置类的class对象加载    ApplicationContext context = new AnnotationConfigApplicationContext(LuoConfig.class);    User user =  context.getBean("getUser",User.class);    System.out.println(user.getName());}
-```
+   需要注意以下几点：
+   系统用户名使用hadoop
+   不要修改/etc/hosts 默认的localhost地址，如果已经修改请重新把127.0.0.1映射到localhost
 
-这种纯java的配置方式在springboot中随处可见
+2. 如果系统是Mac，请参照下面给出的链接进行安装：
+   [Mac 安装Hadoop教程-单机-伪分布式配置](http://dblab.xmu.edu.cn/blog/820-2/)
 
-### 10.代理模式
+###### 2.分布式安装方式
 
-![image-20210206211147061](https://cdn.jsdelivr.net/gh/luoqianyi/staticForimages@e455a5d822f1ac3d10e00b5c97849326f33382a0/2021/03/03/aa2866cc5132a8f051be017a683da147.png)
+（1）在集群上分布式安装Hadoop，请参考：
+[Hadoop集群安装配置教程_Hadoop2.6.0_Ubuntu/CentOS](http://dblab.xmu.edu.cn/blog/install-hadoop-cluster/)
 
-**SpringAOP的底层！**
+（2）使用Docker搭建Hadoop分布式集群，请参考实验室博客文章《[使用Docker搭建Hadoop分布式集群](http://dblab.xmu.edu.cn/blog/1233/)》。
 
-##### 1.分类
+## 11.分布式文件系统HDFS
 
-###### 1.静态代理
+#### 1.什么是分布式文件系统？
 
-![image-20210206223007501](https://cdn.jsdelivr.net/gh/luoqianyi/staticForimages@e20cf343a7ad8561e3fb7c879cc56a0be7e5a96b/2021/03/03/43e2c0c89278cd2274a75437c63517e9.png)
+###### 1.计算机集群结构
 
-1.角色分析：
+- 分布式文件系统把文件分布存储到对各计算机节点上，成千上万的计算机节点构成计算机集群。
+- 与之前使用多个处理器和专用高级硬件的**并行化处理装置**不同的是：
+  - 目前分布式文件系统采用的计算机集群，都是由普通硬件构成的，这就大大降低了硬件开销。
 
-- 抽象角色：一般会使用接口或者抽象类来解决
-- 真实角色：被代理的角色
-- 代理角色：代理真实角色，代理真实角色后，我们一般会做一些附属操作
-- 客户：访问代理对象的人！
+![image-20211012144653616](https://gitee.com/luoqianyi/static-image/raw/master/%E5%9B%BE%E5%BA%8A/20211012144653.png)
 
-2.代理模式的好处：
 
-- 可以使真实角色的操作更加纯粹！不用去关注一些公共的业务
-- 公共也就就交给代理角色！实现了业务的分工！
-- 公共业务发生扩展的时候，方便集中管理！
 
-3.缺点：
+###### 2.分布式文件系统结构
 
-- 一个真实角色就会产生一个代理角色;代码量会翻倍~开发效率会变低~
+- 物理结构：
 
-4.代码步骤：
+  - 计算机集群中的多个节点构成的。这些节点分为两类。一类为**主节点（Master Node）**或者被称为**名称节点（NameNode）**；另一类叫**从节点（Slave Node）**或者也被称为**数据节点（DataNode）**。
+  - 名称节点负责文件和目录的创建、删除和重命名等，同时管理着数据节点和文件块的映射关系。
+  - 数据节点负责数据的存储和读写，以及名称节点的命令。
 
-1. 接口
-2. 真实角色
-3. 代理角色
-4. 客户端访问代理角色
+- 逻辑结构：
 
-###### 2.动态代理
+  ![image-20211012145454393](https://gitee.com/luoqianyi/static-image/raw/master/%E5%9B%BE%E5%BA%8A/20211012145454.png)
 
-   1. 动态代理和静态代理角色一样
+###### 3.设计需求
 
-   2. 动态代理的代理类是动态生成的，不是我们直接写好的！
+1. 透明性
+2. 并发控制
+3. 可伸缩性
+4. 容错性
+5. 安全性
+6. 。。。
 
-   3. 动态代理分为两大类：基于接口的动态代理，基于类的动态代理
+#### 2.HDFS概述
 
-      - 基于接口 --- JDK动态代理
-      - 基于类:cglib
-      - java字节码实现：javasist
+HDFS开源实现了GFS的基本思想，HDFS原来是Apache Nutch搜索引擎的一部分，后来独立作为Apache子项目，并和MapReduce一起成为Hadoop的核心组成部分。
 
-      需要了解两个类：Proxy:代理,InvocationHandler:调用处理
+1. **HDFS的优势**：
+   - 兼容廉价的硬件设备
+   - 流数据读写
+   - 大数据集
+   - 简单的文件模型
+   - 强大的跨平台兼容性
+2. **HDFS的局限性：**
+   - *<u>不适合低延迟的数据访问</u>*
+   - <u>*无法高效存储大量小文件*</u>
+   - *<u>不支持多用户写入及任意修改文件</u>*
 
-​    1.好处：
+##### 1.什么是 **块**？
 
-- 静态代理的好处它都占有！！！
-- 一个动态代理类代理的是一 个接口，一般就是对应的一类业务。
-- 一个动态代理类可以代理多个类，只要是实现了同一个接口即可!
+> 在传统的文件系统中，为了提高磁盘读写效率，一般以数据块为单位。
 
-### 11.AOP（面向切面编程！！！）
+![image-20211012150656361](https://gitee.com/luoqianyi/static-image/raw/master/%E5%9B%BE%E5%BA%8A/20211012150656.png)
 
-##### 1.什么是AOP？
+对于HDFS中，默认一个块是64MB，一个文件被分成多个块，以块作为**存储单位**，块的大小**远远大于**普通文件系统，**降低了单位数据的寻址开销**。
 
-AOP (Aspect Oriented Programming)意为:面向切面编程，通过预编译方式和运行期动态代理实现程序功能
-的统一维护的一 种技术。AOP是OOP的延续及补充，是软件开发中的一个热点，也是Spring框架中的一一个重要内容,是
-函数式编程的一种衍生范型。利用AOP可以对业务逻辑的各个部分进行隔离,从而使得业务逻辑各部分之间的耦合
-度降低，提高程序的可重用性，同时提高了开发的效率。**AOP的编程模式就是横向的编程！！**
+###### 好处有哪些？
 
-![image-20210207094414012](https://cdn.jsdelivr.net/gh/luoqianyi/staticForimages@967d34b4be42bc4c19ae4e9c4711ba68234bf056/2021/03/03/eaa8fb5e83ce81dbc7f6b95a3aebc4ad.png)
+- **支持大规模文件存储：**
 
-##### 2.为什么需要AOP？
+  文件以块为单位进行存储，一个大规模文件可以被拆分成若干个文件块，不同的文件块可以被分发到不同的节点上，因此，一个文件的大小不会受到单个节点的存储容量限制，可以远远大于网络中任意节点的存储容量。
 
-想象下面的场景，开发中在多个模块间有某段重复的代码，我们通常是怎么处理的？显然，没有人会靠“复制粘贴”吧。在传统的面向过程编程中，我们也会将这段代码，抽象成一个方法，然后在需要的地方分别调用这个方法，这样当这段代码需要修改时，我们只需要改变这个方法就可以了。然而需求总是变化的，有一天，新增了一个需求，需要再多出做修改，我们需要再抽象出一个方法，然后再在需要的地方分别调用这个方法，又或者我们不需要这个方法了，我们还是得删除掉每一处调用该方法的地方。**实际上涉及到多个地方具有相同的修改的问题我们都可以通过 AOP 来解决**。
+- **简化系统设计：**
 
-##### 3.AOP在Spring中的作用
+  - 简化存储管理，因为文件块大小是固定的，这样可以很容易的计算出一个节点可以存储多少文件块。
 
-<u>**提供声明式事务：允许用户自定义切面**</u>
+  - 方便**元数据**的管理，元数据不需要和文件块一起存储，可以由其他系统负责管理元数据。
 
-###### 1.AOP 领域中的特性术语：
+    > **元数据解释：**
+    >
+    > 元数据被定义为：**描述数据的数据，对数据及信息资源的描述性信息**。
+    >
+    > 元数据（Metadata）是描述其它数据的数据（data about other data），或者说是用于提供某种资源的有关信息的结构数据（structured data）。元数据是描述信息资源或数据等对象的数据，其使用目的在于：识别资源；评价资源；追踪资源在使用过程中的变化；实现简单高效地管理大量网络化数据；实现信息资源的有效发现、查找、一体化组织和对使用资源的有效管理。 元数据的基本特点主要有：
+    >
+    > a）元数据一经建立，便可共享。元数据的结构和完整性依赖于信息资源的价值和使用环境；元数据的开发与利用环境往往是一个变化的分布式环境；任何一种格式都不可能完全满足不同团体的不同需要；
+    >
+    > b）元数据首先是一种编码体系。元数据是用来描述数字化信息资源，特别是网络信息资源的编码体系，这导致了元数据和传统数据编码体系的根本区别；元数据的最为重要的特征和功能是为数字化信息资源建立一种机器可理解框架。
 
-- 通知（Advice）: AOP 框架中的增强处理。通知描述了切面何时执行以及如何执行增强处理。
-- 连接点（join point）: 连接点表示应用执行过程中能够插入切面的一个点，这个点可以是方法的调用、异常的抛出。在 Spring AOP 中，连接点总是表示一个方法的执行。
-- 切点（PointCut）: 可以插入增强处理的连接点。
-- 切面（Aspect）: 切面是通知和切点的结合。
-- 引入（Introduction）：引入允许我们向现有的类添加新的方法或者属性。
-- 织入（Weaving）: 将增强处理添加到目标对象中，并创建一个被增强的对象，这个过程就是织入。
+- **适合数据备份：**
 
-![image-20210207122105772](https://cdn.jsdelivr.net/gh/luoqianyi/staticForimages@2de28e462a7e475d91bb251d92eabf4fed8e5261/2021/03/03/bf449cfdd3d5246e359efb371fc143ab.png)
+  每个文件块都可以冗余存储到多个节点上，大大提高了系统的容错性和可用性。
 
-###### 2.名词解释
+##### 2.**名称节点和数据节点**
 
-**关注点**：增加的某个业务。如日志、安全、缓存、事务等。
+![image-20211012153029793](https://gitee.com/luoqianyi/static-image/raw/master/%E5%9B%BE%E5%BA%8A/20211012153029.png)
 
-**通知类型:**
+###### 1.名称节点
 
-- 前置通如(Before advice) :在某连接点之前执行的通知，但这个通知不能阻止连接点之前的执行流程(除非它抛出- -个异常)。
-- 后置通知(After returning advice) :在某连接点正常完成后执行的通知:例如，-一个方法没有抛出任何异常，正常返回。
-- 异常通知(After throwing advice) :在方法抛出异常退出时执行的通知。
-- 最終通知(After (finally) advice) :当某连接点退出的时候执行的通知(不论是正常返回还是异常退出)。
-- 环绕通知(Around Advice) :包围- -个连接点的通知，如方法调用。这是最强大的一-种通知类型。环绕通知可以在方法调用前后完成自定义的行为。它也会选择是否继续执行连接点或直接返回它自己的返回值或抛出异常来结束执行。
+它负责管理分布式文件系统的**命名空间(NameSpace)**,保存两个核心的数据结构，即`FsImage`和`EditLog`。
 
-###### 3.使用Spring实现AOP
+> 分布式文件系统的命名空间：目录、文件、块
 
-1. 使用SpringAPI来实现
+- FsImage: 用于维护文件系统树以及文件树中所有文件和文件夹的元数据。
 
-   - 首先导入依赖
+  > Fslmage文件详细解释：
+  >
+  > - Fslmage文件包含文件系统中所有目录和文件inode的序列化形式。每个inode是一个文件或目录的元数据的内部表示，并包含此类信息:文件的复制等级、修改和访问时间、访问权限、块大小以及组成文件的块。对于目录，则存储修改时间、权限和配额元数据
+  > - Fslmage文件没有记录文件包含哪些块以及每个块存储在哪个数据节点。而是由名称节点把这些映射信息保留在内存中，当数据节点加入HDFS集群时，数据节点会把自己所包含的块列表告知给名称节点，此后会定期执行这种告知操作，以确保名称节点的块映射是最新的。
 
-   ```xml
-   <!--        使用SpringAop的时候需要导入-->        <dependency>            <groupId>org.apache.geronimo.bundles</groupId>            <artifactId>aspectjweaver</artifactId>            <version>1.6.8_2</version>        </dependency>
-   ```
+- EditLog: 操作日志文件，记录了所有针对文件的创建、删除、重命名等操作。
 
-   - Log.java前置通知
+**名称节点记录了每个文件中各个块所在的数据节点的位置信息，但是并不持久化存储这些信息，而是在系统每次启动时扫描所有数据节点重构得到这些信息。**
 
-   ```java
-   public class Log  implements MethodBeforeAdvice {    public void log(){        System.out.println("进入了执行方法");    }    public void before(Method method, Object[] objects, Object o) throws Throwable {        log();        System.out.println(o.getClass().getName()+"的"+method.getName()+"方法");    }}
-   ```
+![image-20211012154449748](https://gitee.com/luoqianyi/static-image/raw/master/%E5%9B%BE%E5%BA%8A/20211012154449.png)
 
-   - AfterLog.java后置通知
+###### 执行时名称节点怎样起作用的？
 
-   ```java
-   public class AfterLog implements AfterReturningAdvice {    /**     * 目标方法执行后的通知     * o:返回值     * method:被调用的方法对象     * objects:被调用的方法对象的参数     * o1:被调用的方法对象的目标对象     */    public void afterReturning(Object o, Method method, Object[] objects, Object o1) throws Throwable {        System.out.println(o1.getClass().getName()+"的"+method.getName()+"被成功执行，返回值是"+o);    }}
-   ```
+1. 启动时，它会将FsImage文件中的内容加载到内存中，然后执行EditLog文件中的各项操作，使得内存中的元数据和实际的同步。
 
-   - 目标类
+2. 在内存中成功建立文件系统元数据的映射，则创建一个新的FsImage文件和一个空的EditLog文件。
 
-   ```java
-   public class UserServiceImp implements UserService{    public void add() {        System.out.println("增加用户");    }    public void delete(int n) {        System.out.println("删除用户");    }    public void update() {        System.out.println("修改用户");    }    public void search() {        System.out.println("查询用户");    }}
-   ```
+3. 名称节点启动成功并进入正常状态后，**HDFS中的更新操作会重新写到EditLog文件**，而不是直接写FsImage。
 
-   - 配置文件
+   > 因为FsImage文件一般都很大(GB级别），如果所有的更新操作都往FsImage文件中添加，那么系统运行的十分缓慢。相对而言，EditLog通常会远小于FsImage，更新操作写入到EditLog是非常高效的。
 
-   ```xml
-     <?xml version="1.0" encoding="UTF-8"?>  <beans xmlns="http://www.springframework.org/schema/beans"         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"         xmlns:context="http://www.springframework.org/schema/context"         xmlns:aop="http://www.springframework.org/schema/aop"         xsi:schemaLocation="http://www.springframework.org/schema/beans          https://www.springframework.org/schema/beans/spring-beans.xsd          http://www.springframework.org/schema/context          https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">      <bean id="userService" class="com.luo.service.UserServiceImp"/>      <bean id="log" class="com.luo.log.Log"/>      <bean id="afterLog" class="com.luo.log.AfterLog"/>      <aop:config>          <aop:pointcut id="pointcut" expression="execution(* com.luo.service.UserServiceImp.*(..))"/>          <aop:advisor advice-ref="log" pointcut-ref="pointcut"/>          <aop:advisor advice-ref="afterLog" pointcut-ref="pointcut"/>      </aop:config>  </beans>
-   ```
 
-Spring-aop就是将公共的业务（如日志、安全等）和领域业务结合，当执行领域业务的时候加入公共业务。实现公共业务的重复利用，其本质还是动态代理。
 
-2. 自定义类来实现aop
+###### 2.数据节点
 
-   - 首先编写自定义类，里面包含了一些需要插入的方法
+数据节点(DataNode )是分布式文件系统HDFS的工作节点，负责数据的存储和读取，会根据客户端或者名称节点的调度来进行数据的**存储和检索**，**并且向`名称节点`==定期发送自己所存储的块的列表==**。
 
-     ```java
-     public class DiyPointCut {    public void before(){        System.out.println("=========方法执行前======");    }    public void after(){        System.out.println("========方法执行后=====");    }}
-     ```
+##### 3.**第二名称节点**
 
-   - 然后编写配置文件
+>  名称节点运行期间EditLog不断变大的问题？
 
-     ```xml
-         <bean id="diy" class="com.luo.diy.DiyPointCut"/>    <aop:config><!--        自定义切面，ref:要引入的类-->        <aop:aspect ref="diy">            <aop:pointcut id="point" expression="execution(* com.luo.service.UserServiceImp.*(..))"/>            <aop:before method="before" pointcut-ref="point"/>            <aop:after method="after" pointcut-ref="point"/>        </aop:aspect>    </aop:config>
-     ```
+在名称节点运行期间，HDFS会不断发生更新操作，并且所有更新操作都是直接写到EditLog中，久而久之，EditLog文件将会变得很大。
 
-3. 使用注解方式实现Aop
+虽然这对名称节点运行时候是没有什么明显影响的，但是，当名称节点重启的时候，名称节点需要先将FsImage里面的所有内容映像到内存中，然后再一条一条地执行EditLog中的记录，当EditLog文件非常大的时候，会导致名称节点启动操作非常慢，而在这段时间内**HDFS系统处于安全模式**，一直无法对外提供写操作，影响了用户的使用。
 
-   - 开启注解支持
+**怎么解决呢？**
 
-     ```xml
-     <!--    开启注解支持-->    <aop:aspectj-autoproxy/>
-     ```
+使用==第二名称节点（SecondaryNameNode）==！
 
-   - 编写公共业务类（定义切面）
+- 可以完成**EditLog与FsImage的合并操作**，减小EditLog文件大小，缩短名称节点重启时间。
+- 可以作为名称节点的“检查点”，保存名称节点中的元数据信息。
 
-     ```java
-     @Aspect //标注这个类是一个切面public class AnnotationPointCut {    @Before("execution(* com.luo.service.UserServiceImp.*(..))")    public void before(){        System.out.println("--方法使用前--");    }    @After("execution(* com.luo.service.UserServiceImp.*(..))")    public void after(){        System.out.println("--方法执行后--");    }    //在环绕增强中，我们可以给定一个参数，代表我们要获取处理切入的点    @Around("execution(* com.luo.service.UserServiceImp.*(..))")    public void around(ProceedingJoinPoint joinPoint) throws Throwable {        System.out.println("环绕前");       Signature signature = joinPoint.getSignature();        System.out.println(signature.toString());;        //执行方法      Object proceed =  joinPoint.proceed();        System.out.println("环绕后");        System.out.println(proceed);    }}
-     ```
+###### 1.**EditLog与FsImage的合并操作**
 
-   - 增加bean
+![image-20211012160145502](https://gitee.com/luoqianyi/static-image/raw/master/%E5%9B%BE%E5%BA%8A/20211012160145.png)
 
-     ```xml
-     <bean id="annotation" class="com.luo.diy.AnnotationPointCut"/>
-     ```
+1. SecondaryNameNode会定期和NameNode通信，请求其停止使用EditLog文件，暂时将新的写操作写到一个新的文件editLog.new上来，这个操作是瞬间完成，上层写日志的函数完全感觉不到差别,
+2. SecondaryNameNode将NameNode上FsImage和EditLog文件拉回到本地，再加载到内存中;
+3. 逐条执行EditLog文件中的各项更新操作，使得内存中的Fslmage保持最新;这就是EditLog和Fslmage文件合并
+4. 将新的Fslmage发送到NameNode节点上.
+5. NameNode将从第二名称节点接收到的新的Fslmage替换旧的Fslmage文件,同时用EditLog.new去替换EditLog文件，通过这个过程EditLog就变小了。
 
-### 12.整合Mybatis
+###### 2.作为名称节点的检查点
 
-1. 添加依赖
+第二名称节点会定期和名称节点通信，从这个角度来讲，第二名称节点相当于名称节点的检查点，周期性的备份名称节点中的源数据信息，当**名称节点发生故障时，就可以用第二名称节点记录的源数据信息进行恢复。但是会丢失一部分更新操作。**
 
-   ```xml
-    <dependencies>        <dependency>            <groupId>junit</groupId>            <artifactId>junit</artifactId>            <version>4.13</version>        </dependency>        <dependency>            <groupId>mysql</groupId>            <artifactId>mysql-connector-java</artifactId>            <version>8.0.22</version>        </dependency>        <dependency>            <groupId>org.mybatis</groupId>            <artifactId>mybatis</artifactId>            <version>3.5.2</version>        </dependency>        <dependency>            <groupId>org.springframework</groupId>            <artifactId>spring-webmvc</artifactId>            <version>5.3.3</version>        </dependency><!--        spring操作数据库的话还需要一个spring-jdbc-->        <dependency>            <groupId>org.springframework</groupId>            <artifactId>spring-jdbc</artifactId>            <version>5.3.3</version>        </dependency>        <!--        使用SpringAop的时候需要导入-->        <dependency>            <groupId>org.apache.geronimo.bundles</groupId>            <artifactId>aspectjweaver</artifactId>            <version>1.6.8_2</version>        </dependency>        <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->        <dependency>            <groupId>org.mybatis</groupId>            <artifactId>mybatis-spring</artifactId>            <version>2.0.6</version>        </dependency>    </dependencies>
-   ```
+在HDFS的设计中，也并不支持系统直接切换到第二名称节点，第二名称节点**只是起到了名称节点检查点作用，并不能起到热备份作用。**
 
-2. 编写数据源配置
+#### 3.HDFS结构
 
-   mybatis中：
+##### 1.概述
 
-   ```xml
-   <configuration><!--    <properties resource="db.properties"/>-->    <settings>        <!--        这是一个标准日志工厂的实现-->        <setting name="logImpl" value="LOG4J2"/>        <setting name="mapUnderscoreToCamelCase" value="true"/>    </settings>    <typeAliases>        <package name="com.luo.pojo"/>    </typeAliases>     <mappers>        <mapper class="com.luo.mapper.UserMapper"/>    </mappers></configuration>
-   ```
+HDFS采用**主从结构模型**，一个HDFS集群包括**一个名称节点和若干个数据节点**。
 
-   spring配置文件中连接数据库：
+**名称节点**作为中心服务器，**负责管理文件系统的命名空间及客户端对文件的访问**。
 
-   ```xml
-   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">    <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>    <property name="url" value="jdbc:mysql://localhost:3306/mybatis?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=true&amp;serverTimezone=UTC"/>    <property name="password" value="luoqianyi"/>    <property name="username" value="root"/></bean>
-   ```
+数据节点一般是一个节点运行一个数据节点进程，负责处理文件系统客户端的读/写请求，在名称节点的统一调度下进行数据块的创建、删除和复制等操作。**每个==数据节点的数据==实际上是保存在==本地Linux文件系统中==的。**
 
-3. sqlSessionFactory
+![image-20211019145218429](https://gitee.com/luoqianyi/static-image/raw/master/%E5%9B%BE%E5%BA%8A/20211019145218.png)
 
-   ```xml
-   <!--    sqlSessionFactory-->    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">        <property name="dataSource" ref="dataSource"/><!--        绑定Mybatis配置文件-->        <property name="configLocation" value="classpath:mybatis-config.xml"/><!--        <property name="mapperLocations" value="classpath:com/luo/mapper/*.xml"/>-->    </bean>
-   ```
+HDFS采用Java语言开发，任何支持JVM的机器均可部署为名称节点和数据节点。**HDFS集群中只有唯一一个名称节点。**
 
-4. sqlSessionTemplate(spring-mybatis的核心)
+##### 2.HDFS命名空间管理
 
-   ```xml
-   <!--    sqlSession-->    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate"><!--        只能使用构造器注入sqlSession，因为它没有set方法-->        <constructor-arg index="0" ref="sqlSessionFactory"/>    </bean>
-   ```
+HDFS的命名空间包含**目录、文件和块。**
 
-   注意这里的sqlSession就是sqlSessionTemplate,而这个对象需要添加至少一个参数
+**命名空间管理**是指：
 
-5. 需要给接口加实现类
+- HDFS中目录文件和块做类似文件系统的创建、修改、删除等基本操作。
 
-   ```java
-   public class UserMapperImpl implements UserMapper {    private SqlSessionTemplate sqlSessionTemplate;    //我们的所有操作，都是使用sqlSession来执行。在原来，现在都是用SqlSessionTemplate    public List<User> selectUser() {       UserMapper user = sqlSessionTemplate.getMapper(UserMapper.class);       return user.selectUser();    }    public void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate){        this.sqlSessionTemplate = sqlSessionTemplate;    }}
-   ```
+HDFS集群中只有一个命名空间！！！并且只有唯一名称节点，该节点是对命名空间进行管理的。
 
-6. 将自己写的实现类（实现类里面去做mybatis中做的事情），注入到Spring中
+HDFS使用的是**传统的分级文件体系**，因此，用户可以像使用普通文件系统一样，创建、删除目录和文件,在目录间转移文件,重命名文件等。
 
-   ```xml
-   <bean id="usermapper" class="com.luo.mapper.UserMapperImpl">    <property name="sqlSessionTemplate" ref="sqlSession"/></bean>
-   ```
+##### 3.通信协议
 
-7. 测试使用即可
+HDFS的通讯协议基于TCP/IP协议。
 
-注意：新增的spring-mybatis中有个简化接口实现类代码的方法，利用SqlSessionDaoSupport类来进行简化
+- **客户端和名称节点**：
+  - 客户端通过一个可配置的端口向名称节点主动发起TCP连接，并使用客户端协议与名称节点进行交互。
+- **名称节点和数据节点**：
+  - 数据节点协议进行交互
+- **客户端与数据节点**：
+  - 通过RPC实现交互，名称节点不会主动发起RPC，而是响应来自客户端和数据节点的RPC请求。
 
-```java
-public class UserMapperImpl2 extends SqlSessionDaoSupport implements UserMapper {    public List<User> selectUser() {        return getSqlSession().getMapper(UserMapper.class).selectUser();    }}
-```
+##### 4.客户端
 
-同时省去构造器注入sqlSession的操作，只需要在bean.xml中装配如下即可：
+HDFS客户端是一个库，提供了HDFS文件系统接口，这些接口隐藏了HDFS实现中的大部分复杂性。
 
-```xml
-<bean id="usermapper2" class="com.luo.mapper.UserMapperImpl2">    <property name="sqlSessionFactory" ref="sqlSessionFactory"/></bean>
-```
+客户端支持打开、读取、写入等常见的操作，提供了两种方式：
 
-### 13.声明式事务
+- 类似Shell的命令行方式来访问HDFS的数据
 
-事务在项目开发中，十分的重要，涉及到一些数据的一致性问题，不能马虎！确保一致性和完整性，要么都失败，要么都成功。
+- HDFS提供了Java API,作为应用程序客户端编程接口。
 
-事务的ACID原则：原子性、一致性、隔离性、持久性
+##### 5.局限性
 
-隔离性：多个业务可能操作同一个资源，防止数据损坏
+ HDFS由于设置了唯一一个名称节点，虽然大大简化了系统的设计，但也导致了一些局限性：
 
-持久性：事务一旦提交，无论发生什么情况，结果都不会被影响，被持久化的写到存储器中！
+（**唯一名称节点导致的局限性）**：
 
-##### 1.交由容器管理事务
+1. **命名空间的限制**: 名称节点是保存在内存中的,因此,名称节点能够容纳的对象(文件、块)的个数会受到内存空间大小的限制。
+2. **性能的瓶颈**: 整个分布式文件系统的吞吐量,受限于单个名称节点的吞吐量。
+3. **隔离问题**: 由于集群中只有一个名称节点,只有一个命名空间，因此,无法对不同应用程序进行隔离。
+4. **集群的可用性**: 一旦这个唯一 的名称节点发生故障,会导致整个集群变得不可用。
 
-1. 配置声明式事务
+#### **4.存储原理**
 
-   ```xml
-   <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">  <constructor-arg ref="dataSource" /></bean>
-   ```
+##### 1.数据的冗余存储
 
-2. 结合AOP实现事务的织入
+为了保证系统的容错性和可用性，HDFS采用了**多副本方式对数据进行冗余存储**,通常一个数据块的多个副本会被分布到**不同的数据节点**上，这种多副本方式具有以下几个优点。
 
-   ```xml
-   <!--配置事务通知--><tx:advice id="txAdvice" transaction-manager="transactionManager">	<!--给哪些方法配置事务,可以配置事务的传播特性：new propagation-->    <tx:attributes>    	<tx:method name="add" propagation="REQUIRED"/>        <tx:method name="delete" propagation="REQUIRED"/>        <tx:method name="query" read-only="true"/>        <tx:method name="*"/>    </tx:attributes></tx:advice>
-   ```
+- 加快数据传输速度
 
-3. 配置事务切入
+- 容易检查数据错误
 
-   ```xml
-   <aop:config>	<aop:pointcut id="txPoint" expression="execution(* com.luo.mapper.*.*(..))"/>    <aop:advisor advice-ref="txAdvice" pointcut-ref="txPoint"/></aop:config>
-   ```
+- 保证数据可靠性
 
-##### 2.编程式事务管理
+  ![image-20211026150106330](https://gitee.com/luoqianyi/static-image/raw/master/%E5%9B%BE%E5%BA%8A/20211026150106.png)
 
-MyBatis 的 `SqlSession` 提供几个方法来在代码中处理事务。但是当使用 MyBatis-Spring 时，你的 bean 将会注入由 Spring 管理的 `SqlSession` 或映射器。也就是说，Spring 总是为你处理了事务。
+##### 2.数据存取策略
 
-你不能在 Spring 管理的 `SqlSession` 上调用 `SqlSession.commit()`，`SqlSession.rollback()` 或 `SqlSession.close()` 方法。如果这样做了，就会抛出 `UnsupportedOperationException` 异常。在使用注入的映射器时，这些方法也不会暴露出来。
+###### 1.存
 
-无论 JDBC 连接是否设置为自动提交，调用 `SqlSession` 数据方法或在 Spring 事务之外调用任何在映射器中方法，事务都将会自动被提交。
+第一个副本：集群内发起写操作，放置在**上传文件**的==数据节点==上；如果是集群外进行提交的话，则会**随机挑选一台磁盘不太满、CPU不太忙的节点**上。
 
-如果你想编程式地控制事务，请参考 [the Spring reference document(Data Access -Programmatic transaction management-)](https://docs.spring.io/spring/docs/current/spring-framework-reference/data-access.html#transaction-programmatic) 。下面的代码展示了如何使用 `PlatformTransactionManager` 手工管理事务。
+第二个副本：放置在与第一个副本**不同的机架的节点**上。
 
-```java
-public class UserService {  private final PlatformTransactionManager transactionManager;  public UserService(PlatformTransactionManager transactionManager) {    this.transactionManager = transactionManager;  }  public void createUser() {    TransactionStatus txStatus =        transactionManager.getTransaction(new DefaultTransactionDefinition());    try {      userMapper.insertUser(user);    } catch (Exception e) {      transactionManager.rollback(txStatus);      throw e;    }    transactionManager.commit(txStatus);  }}
-```
+第三个副本：**与第一个副本相同机架的其它节点上。**
 
-在使用 `TransactionTemplate` 的时候，可以省略对 `commit` 和 `rollback` 方法的调用。
+更多副本：随机节点位置上。
 
-```java
-public class UserService {  private final PlatformTransactionManager transactionManager;  public UserService(PlatformTransactionManager transactionManager) {    this.transactionManager = transactionManager;  }  public void createUser() {    TransactionTemplate transactionTemplate = new TransactionTemplate(transactionManager);    transactionTemplate.execute(txStatus -> {      userMapper.insertUser(user);      return null;    });  }}
-```
+###### 2.取
+
+**调用API的方式确定所属机架ID！！！**
+
+当客户端读取数据时,**从名称节点获得数据块不同副本的存放位置列表**,列表中包含了**副本所在的数据节点,**可以调用API来确定客户端和这些数据节点所属的机架ID，当发现某个数据块副本对应的机架ID和客户端对应的机架ID**相同**时,就优先选择该副本读取数据,**如果没有发现,就随机选择一个副本读取数据。**
+
+###### 3.复制
+
+- **流水线复制策略，效率高。**
+
+  ![image-20211026152644437](https://gitee.com/luoqianyi/static-image/raw/master/%E5%9B%BE%E5%BA%8A/20211026152644.png)
+
+- 当client向 HDFS 文件写入数据的时候。一開始是写到本地暂时文件里。
+
+- 假设该文件的副本系数设置为 3 ，当**本地暂时文件累积到一个数据块的大小**时，client会从 Namenode **获取一个 Datanode 列表用于存放副本。**然后client開始向第一个Datanode数据传输，第一个 Datanode 一小部分一小部分 (4 KB) 地接收数据，将**每一部分写入本地仓库。并同一时候传输该部分到列表中第二个 Datanode 节点**。第二个 Datanode 也是这样，一小部分一小部分地接收数据，写入本地仓库。并同一时候传给第三个 Datanode 。
+
+- 最后，第三个 Datanode 接收数据并存储在本地。因此，Datanode 能流水线式地从前一个节点接收数据。并同一时候转发给下一个节点，数据以流水线的方式从前一个Datanode拷贝到下一个Datanode。
+
+##### 3.数据错误与恢复
+
+HDFS具有较高的容错性，可以兼容廉价的硬件，他把硬件出错看作一种常态，但是不是异常，并设计了相应机制数据错误和进行自动恢复，主要包括3种情形：
+
+- **名称节点出错**
+- **数据节点出错**
+- **数据出错**
+
+###### 1.名称节点出错
+
+名称节点保存了所有的元数据信息,最核心数据结构是FsImage和Editlog ,如果这两个文件发生损坏,那么整个HDFS实例将失效。
+
+1. **把名称节点上的元数据信息同步存储到其他文件系统;**
+2. **运行第二名称节点,当名称节点宕机时,仍然会丢失部分数据。结合使用,将1中备份的元数据信息放到第二名称节点进行恢复,第二名称节点充当名称节点。**
+
+###### 2.数据节点出错
+
+每个数据节点会**定期向名称节点发送"心跳”信息**,向**名称节点**报告自己的状态,当**数据节点发生故障**,或者**网络发生断网时,**名称节点就无法收到来自一些数据节点的心跳信息,这时,这些数据节点就会**被标记为"宕机”**，节点上面的所有数据都会被标记为**“不可读“**，**名称节点不会再给它们发送任何I/O请求**。
+
+###### 3.数据出错
+
+- 网络传输和磁盘错误等因素，都会造成数据错误。
+- 客户端在读取到数据后,会采用md5和sha1对数据块进行校验，以确定读取到正确的数据。
+- 在文件被创建时，客户端就会对每一个文件块进行信息摘录,并把这些信息写入到同一个路径的隐藏文件里面。
+- 当客户端读取文件的时候，会先读取该信息文件，然后,利用该信息文件对每个读取的数据块进行校验,如果校验出错，客户端就会请求到另外一个数据节点读取该文件块,并且向名称节点报告这个文件块有错误，名称节点会定期检查并且重新复制这个块。
+
+#### 5.HDFS的Shell编程
+
+基本上在HDFS系统下执行的命令与linux下的相同，只不过前面加上**hdfs dfs -**Linux的命令或者**hadoop dfs -{args}**或者**hadoop fs -{args}** 
+
+如果想HDFS文件与宿主机系统文件进行互通，有以下命令不同：
+
+- `hdfs dfs -put 宿主机文件/目录  HDFS目录下`  ：上传宿主机文件到HDFS系统
+
+- `hdfs dfs -get HDFS系统目录/文件 宿主机目录/文件 ` ： 下载HDFS系统里的文件到宿主机下
+
+- `hadoop dfs admin -help`  :查看dfs管理命令帮助
+
+- `hdfs dfs -appendToFile 本地文件 HDFS文件 ` ：将本地文件内容追加到HDFS文件里
+
+- `hdfs dfs -rmr HDFS系统目录/文件` :删除hdfs系统下的文件或目录
+
+- `hdfs dfs -touchz HDFS文件`：创建HDFS的文件
+
+- `hdfs dfs -moveFromLocal 本地文件 HDFS目录下`：把指定的本地文件移动到HDFS系统指定的位置。
+
+  
 
