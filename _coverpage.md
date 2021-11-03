@@ -8,7 +8,7 @@
 - 学习经验
 
 [GitHub](https://github.com/luoqianyi)
-[Get Started](/readme)
+[Get Started](/README)
 
 ![color](#B8FCC2)
 
