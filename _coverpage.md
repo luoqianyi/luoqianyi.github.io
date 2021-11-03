@@ -10,5 +10,3 @@
 [GitHub](https://github.com/luoqianyi)
 [Get Started](/README)
 
-![color](#B8FCC2)
-
